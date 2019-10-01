@@ -5,22 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Aula 01</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
-       <h1 v-if="status">{{titulo}}</h1> 
-       <div v-if="usuario.id == 1">
-           Id:        {{usuario.id}},<br>
-           Nome:      {{usuario.nome}},<br>
-           Profissão: {{usuario.profissao}}<br>
-       </div>
-       <div v-else> Nenhum usuário com id = 1 </div>
-
-       <ul>
-           <li v-for="item in linguagens"> {{ item.nome }} </li>
-       </ul>
-
-
+        <button class="btn" :class="btnClassLimpar">Limpar</button>
+        <button class="btn" :class="btnClassEnviar">Enviar</button>
 
     </div>
 
@@ -31,21 +21,18 @@
         var app = new Vue ({
             el :"#app",
             data:{
-                status: true,
                 titulo: "Aula 1 - Vuejs do jeito ninja!",
-                usuario:{
-                    id : 1,
-                    nome: "Jon Snow",
-                    profissao: "Ator"
-                },
-                linguagens:[
-                    {nome : "Javascript"},
-                    {nome : "PHP"},
-                    {nome : "C#"},
-                    {nome : "Java"},
-                    {nome : "Python"},
+                btnClassLimpar:{
+                    'btn-danger' : true,
+                    'btn-lg' : true
+                } ,
+                btnClassEnviar:[
+                    'btn-primary',
+                    {'btn-lg':true}
                 ]
+       
             }
+
 
         });
     </script>
