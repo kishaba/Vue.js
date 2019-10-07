@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 01</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        {{nome}} <br>
+        {{ toUpperCase }} <br>
+        {{ fullName }}
+
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue ({
+            el :"#app",
+            data:{
+                titulo: "Aula 1 - Vuejs do jeito ninja!",
+                nome: "Alexandre" ,   
+                FirstName: '',
+                LastName:  '' ,
+                //fullName: ''       
+       
+            },
+            computed:{
+                toUpperCase() {
+                    return this.nome.toUpperCase();
+                },
+                fullName(){
+                    return this.FirstName + ' ' + this.LastName;
+                }
+
+            },
+            watch:{
+               /* nome(newValue,oldValue){
+                    console.log('new',newValue);
+                    console.log('old',oldValue);
+
+                },
+                FirstName(newValue){
+                    this.fullName =  newValue + ' ' + this.LastName;
+                },
+                LastName(newValue){
+                    this.fullName = this.FirstName  + ' ' + newValue;
+                }*/
+                FirstName(newValue){
+                    this.UpdateUser();
+                },
+                LastName(newValue){
+                    this.UpdateUser();
+                }
+
+            },
+
+            methods: {
+                UpdateUser () {
+                    console.log('Usuario Atualizado');
+                }
+            },
+
+
+        });
+    </script>
+</body>
+</html>
