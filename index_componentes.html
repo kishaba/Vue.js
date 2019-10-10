@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aula 01</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+<body>
+    <div id="app">
+        {{titulo}} <br>
+        <menu-bar></menu-bar>
+        <menu-bar></menu-bar>
+
+    </div>
+
+    <template id="menu">
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+
+    </template>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('menu-bar',{
+            template: "#menu"
+        });
+
+        var app = new Vue ({
+            el :"#app",
+            data:{
+                titulo: "Aula 1 - Vuejs do jeito ninja!",      
+       
+            }
+        })
+
+
+
+    </script>
+</body>
+</html>

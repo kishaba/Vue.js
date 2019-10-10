@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Aula 01</title>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+</head>
+
+<body>
+	<div id="app">
+		<nav-bar></nav-bar>
+	</div>
+
+	<!--!== CRIAÇÃO DE TEMPLATES ==-->
+	<template id="nav">
+		<nav>
+			<div class="nav-wrapper teal lighten-2">
+				<a href="#" class="brand-logo">Logo</a>
+				<menu-bar :items="topNav" @emit-click="getLink">
+				</menu-bar>
+			</div>
+		</nav>
+	</template>
+
+	<template id="menu">
+		<ul id="nav-mobile" class="right hide-on-med-and-down">
+			<li v-for="(item,index) in items"><a @click.stop.prevent="emitClick(index)" href="#">{{item.label}}</a></li>
+		</ul>
+
+	</template>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		Vue.component('nav-bar', {
+			template: "#nav",
+			data() {
+				return {
+					topNav: [{ label: 'Home' }, { label: 'Link' }, { label: 'teste' }]
+				}
+
+			},
+			methods: {
+				getLink(index) {
+					alert(this.topNav[index].label);
+				}
+			}
+		});
+
+		Vue.component('menu-bar', {
+			template: "#menu",
+			props: {
+				items: {
+					type: Array,
+					required: true,
+					default: []
+				}
+			},
+			methods: {
+				emitClick(index) {
+					this.$emit('emit-click', index);
+				}
+			}
+		});
+
+		var app = new Vue({
+			el: "#app",
+			data: {
+				titulo: "Aula 1 - Vuejs do jeito ninja!",
+
+			}
+		})
+
+
+
+	</script>
+</body>
+
+</html>
