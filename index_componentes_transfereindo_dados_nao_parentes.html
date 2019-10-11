@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Aula 01</title>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+	<div id="app">
+
+		<div class="container">
+			<input-form>
+				@submit='function()'
+			</input-form>
+			<br>
+			<my-list></my-list>
+		</div>
+	</div>
+
+
+
+	<template id='form'>
+		<div class="card">
+			<div class="card-block">
+				<div class="form-group">
+					<label for="">Título</label>
+					<input v-model="title" type="text" class="form-control">
+				</div>
+				<button @click.prevent.stop="submit()" class="btn waves-effect waves-light" type="submit" name="action">Submit
+					<i class="material-icons right">send</i>
+				</button>
+			</div>
+		</div>
+	</template>
+
+	<template id='list'>
+		<ul class="collection">
+			<li v-for="item in list" class="collection-item">{{item.name}}</li>
+
+		</ul>
+	</template>
+
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script>
+		Vue.component('input-form',
+			{
+				template: '#form',
+				data() {
+					return {
+						title: '',
+					}
+				},
+				methods: {
+					submit() {
+						eventBus.$emit('submit', this.title)
+					}
+				}
+			}
+		);
+		Vue.component('my-list',
+			{
+				template: '#list',
+				created(){
+					var vm = this;
+					eventBus.$on('submit', function(titulo){
+						if (titulo) {
+							vm.list.push({name:titulo});
+						}
+					})
+				},
+				data (){
+					return {
+						list: [
+							{name: "Ir a Feira"}
+						]
+					}
+				}
+			}
+		);
+
+		var eventBus = new Vue();
+		Vue.prototype.$eventHub = new Vue()
+
+		var app = new Vue({
+			el: "#app",
+			data: {
+				titulo: "Aula 1 - Vuejs do jeito ninja!",
+
+			}
+		})
+	</script>
+</body>
+
+</html>
