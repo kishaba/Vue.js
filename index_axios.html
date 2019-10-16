@@ -20,27 +20,48 @@
 	<div id="app">
 
 		<div class="container">
-			<button @click.stop.prevent='getUsers()'></button>
-
+			<button @click='getUsers()' class="btn waves-effect waves-light" name="action">Submit
+				<i class="material-icons right">send</i>
+			</button>
 		</div>
+
+		<p>
+			<ul>
+				<li v-for="user in users">{{user.name}} </li>
+			</ul>
+		</p>
+
 	</div>
 
-
-
-
-
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script>
 
 		var app = new Vue({
 			el: "#app",
-			data: {
-				titulo: "Aula 1 - Vuejs do jeito ninja!",
+			data() {
+				return {
+					titulo: "Aula 1 - Vuejs do jeito ninja!",
+					url: 'http://jsonplaceholder.typicode.com/users',
+					users: [],
+					//loader:{
+					//	users: false,
+					//}
+				}
+			},
+			watch: {
+				users: function (n, o) {
+					console.log(n)
+				}
 			},
 			methods: {
 				getUsers() {
+					const vm = this
+					//	this.loader.users = true;
 					//rotina de programação
 					console.log('getUsers')
+					axios.get(this.url)
+						.then( function(r) { vm.users = r.data});
 				}
 			}
 
