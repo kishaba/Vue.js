@@ -1,0 +1,69 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<style>
+  .caixas {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .demo {
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+  }
+
+  .c1 {
+    background-color: red;
+  }
+
+  .c2 {
+    background-color: green;
+  }
+  .c3 {
+    background-color: blue;
+  }
+  .girar {
+    transform: rotate(45deg);
+  }
+</style>
+
+<div id="app">
+  <div class="caixas">
+    <div class="demo" :style="{backgroundColor:cor}"></div>
+    <div class="demo" :style='meuEstilo'> </div>
+    <div class="demo" :class="[meuEstulo,{height:  altura}]"></div>
+  </div>
+  <hr />
+  <input type="text" v-model="cor" /> <br>
+  <input type="text" v-model="largura" /> <br>
+  <input type="text" v-model="altura" />
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      aplicarC1: false,
+      classeCSS: 'c1',
+      cor: 'black',
+      largura: 100,
+      altura: 20
+    },
+    computed: {
+      estilo1() {
+        return {
+          c1: this.aplicarC1,
+          c2: !this.aplicarC1
+        }
+      },
+      meuEstilo(){
+        return {
+          backgroundColor: this.cor,
+          width: `${this.largura}px`,
+          altura: `${this.altura}px`
+       }
+      }
+    },
+    methods: {}
+  })
+</script>
